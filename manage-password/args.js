@@ -1,11 +1,23 @@
-var argv = require('yargs').argv;
+var argv = require('yargs')
+            .command('hello','Greet the user' , function(yargs){
+                yargs.options({
+                    name: {
+                        demand: true,
+                        alias: 'n',
+                        description: 'Your first name goes here'
+                    },
+                     lastname: {
+                        demand: true,
+                        alias: 'l',
+                        description: 'Your last name goes here'
+                    }
+                }).help('help');
+            })
+            .help('help')
+            .argv;
 var command = argv._[0];
 
 console.log(argv);
-
-if(argv._[0] === 'hello'){
-    console.log('Hello world!!');
-}
 if(command === 'hello' & typeof argv.name !== 'undefined' && typeof argv.lastname !== 'undefined'){
     console.log('Hello ' + argv.name + ' ' + argv.lastname + '!') ;
 }
